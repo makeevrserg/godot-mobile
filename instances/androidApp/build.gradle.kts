@@ -17,10 +17,6 @@ plugins {
 
 android {
     namespace = "${requireProjectInfo.group}"
-    if (file("google-services.json").exists()) {
-        apply(plugin = "com.google.gms.google-services")
-        apply(plugin = "com.google.firebase.crashlytics")
-    }
     defaultConfig {
         applicationId = requireProjectInfo.group
         versionCode = baseGradleProperty("project.version.code").requireInt
@@ -105,31 +101,14 @@ dependencies {
     implementation("androidx.compose.foundation:foundation")
     implementation("androidx.compose.material:material")
     implementation(libs.androidx.splash)
-    // FireBase
-    implementation(platform(libs.google.firebase.bom))
-    implementation("com.google.firebase:firebase-auth-ktx")
-    implementation("com.google.firebase:firebase-firestore-ktx")
-    implementation("com.google.firebase:firebase-messaging-ktx")
-    implementation("com.google.firebase:firebase-analytics-ktx")
-    implementation(libs.google.auth)
-    implementation(libs.kotlin.coroutines.playServices)
-    implementation(libs.google.firebase.crsahlytics.ktx)
-    debugImplementation(libs.leakcanary)
     // klibs
     implementation(libs.klibs.mikro.core)
     implementation(libs.klibs.mikro.platform)
     implementation(libs.klibs.kstorage)
-    implementation(libs.klibs.kdi)
-    // moko
-    implementation(libs.moko.resources.core)
     // Decompose
     implementation(libs.decompose.core)
     implementation(libs.decompose.compose)
     implementation(libs.decompose.android)
     // Local
-    implementation(projects.modules.features.root.impl)
-    implementation(projects.modules.features.root.ui)
-    implementation(projects.modules.features.theme.ui)
-    implementation(projects.modules.services.coreUi)
     implementation(projects.modules.services.coreResources)
 }
