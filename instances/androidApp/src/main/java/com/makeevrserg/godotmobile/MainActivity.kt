@@ -32,7 +32,6 @@ internal class MainActivity : FragmentActivity() {
                     TestComposable(
                         Modifier
                             .size(400.dp)
-                            .background(Color.Red)
                     )
                 }
             )
