@@ -3,5 +3,14 @@ package com.makeevrserg.godotmobile.features.test.plugin.model
 import org.godotengine.godot.plugin.SignalInfo
 
 internal enum class PluginIntentEnum(val signalInfo: SignalInfo) {
-    SHOW_GLTF(signalInfo = SignalInfo("show_gltf", String::class.java))
+    SHOW_GLTF(signalInfo = SignalInfo("show_gltf", String::class.java)),
+    SET_BACKGROUND(
+        signalInfo = SignalInfo(
+            "set_background",
+            Int::class.javaObjectType,
+            Int::class.javaObjectType,
+            Int::class.javaObjectType,
+            Int::class.javaObjectType
+        )
+    )
 }

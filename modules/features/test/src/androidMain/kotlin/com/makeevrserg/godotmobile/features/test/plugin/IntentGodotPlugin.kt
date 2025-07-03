@@ -16,6 +16,7 @@ class IntentGodotPlugin(godot: Godot) : GodotPlugin(godot) {
     private fun PluginIntent.toEnum(): PluginIntentEnum {
         return when (this) {
             is PluginIntent.ShowGltf -> PluginIntentEnum.SHOW_GLTF
+            is PluginIntent.SetBackground -> PluginIntentEnum.SET_BACKGROUND
         }
     }
 
@@ -27,6 +28,14 @@ class IntentGodotPlugin(godot: Godot) : GodotPlugin(godot) {
                     intent.path
                 )
             }
+
+            is PluginIntent.SetBackground -> emitSignal(
+                intent.toEnum().signalInfo.name,
+                intent.color.red.times(255).toInt(),
+                intent.color.green.times(255).toInt(),
+                intent.color.blue.times(255).toInt(),
+                intent.color.alpha.times(255).toInt()
+            )
         }
     }
 }

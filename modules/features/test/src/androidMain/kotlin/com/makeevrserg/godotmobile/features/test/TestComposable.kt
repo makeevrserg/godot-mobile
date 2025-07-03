@@ -36,6 +36,7 @@ fun TestComposable(
                 .padding(14.dp)
                 .clickable {
                     godotEventConsumer.onIntent(PluginIntent.ShowGltf("res://gltfs/food_kit/cheese.glb"))
+                    godotEventConsumer.onIntent(PluginIntent.SetBackground(Color.Transparent))
                 },
             text = "Next",
         )

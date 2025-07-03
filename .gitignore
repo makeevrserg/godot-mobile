@@ -2,6 +2,7 @@
 .idea
 .kotlin
 build
+local.properties
 instances/androidApp/build
 modules/features/test/build
 modules/plugins/test/build

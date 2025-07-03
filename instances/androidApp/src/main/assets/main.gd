@@ -13,6 +13,7 @@ func _ready() -> void:
 
 		# Signal fired from the app logic to update the gltf model being shown
 		appPlugin.connect("show_gltf", _load_gltf)
+		appPlugin.connect("set_background", _set_background)
 	else:
 		print("App plugin is not available")
 
@@ -38,6 +39,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		var relative_drag: Vector2 = event.relative
 		current_gltf_node.rotate_y(relative_drag.x / 100)
 		current_gltf_node.rotate_x(relative_drag.y / 100)
+
+func _set_background(r: int,g: int,b: int,a: int) -> void:
+	var world_env := $WorldEnvironment
+	if world_env and world_env.environment:
+		world_env.environment.background_mode = Environment.BG_COLOR
+		world_env.environment.background_color = Color.from_rgba8(r,g,b,a,)
+
 
 
 # Load the gltf model specified by the given path
