@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://0nlbmm01ux5s"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_15c77"]
+[ext_resource type="Script" uid="uid://cdn6hhwrwtoo8" path="res://main.gd" id="1_15c77"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ibrrl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -10,8 +10,8 @@ ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 sky_material = SubResource("ProceduralSkyMaterial_ibrrl")
 
 [sub_resource type="Environment" id="Environment_2hxxm"]
-background_mode = 1
-background_color = Color(1, 0, 0, 0)
+background_mode = 2
+sky = SubResource("Sky_ofxcw")
 tonemap_mode = 2
 
 [node name="Main" type="Node3D"]
