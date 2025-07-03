@@ -29,6 +29,9 @@ android {
     defaultConfig {
         multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        androidResources {
+            ignoreAssetsPatterns += "!.svn:!.git:!.gitignore:!.ds_store:!*.scc:<dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"
+        }
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -101,6 +104,10 @@ dependencies {
     implementation("androidx.compose.foundation:foundation")
     implementation("androidx.compose.material:material")
     implementation(libs.androidx.splash)
+
+    implementation("androidx.fragment:fragment:1.8.8")
+    implementation("androidx.fragment:fragment-ktx:1.8.8")
+    implementation("androidx.fragment:fragment-compose:1.8.8")
     // klibs
     implementation(libs.klibs.mikro.core)
     implementation(libs.klibs.mikro.platform)
@@ -109,6 +116,13 @@ dependencies {
     implementation(libs.decompose.core)
     implementation(libs.decompose.compose)
     implementation(libs.decompose.android)
+
+    implementation(libs.godot)
+
     // Local
     implementation(projects.modules.services.coreResources)
+    // Plugins
+    implementation(projects.modules.plugins.test)
+    // Features
+    implementation(projects.modules.features.test)
 }
