@@ -116,6 +116,9 @@ dependencies {
     implementation(libs.decompose.core)
     implementation(libs.decompose.compose)
     implementation(libs.decompose.android)
+
+    implementation(libs.godot)
+
     // Local
     implementation(projects.modules.services.coreResources)
     // Plugins
