@@ -121,8 +121,8 @@ dependencies {
 
     // Local
     implementation(projects.modules.services.coreResources)
-    // Plugins
-    implementation(projects.modules.plugins.test)
     // Features
-    implementation(projects.modules.features.test)
+    implementation(projects.modules.features.godot)
+    implementation(projects.modules.features.lottie)
+    implementation(projects.modules.features.unity)
 }

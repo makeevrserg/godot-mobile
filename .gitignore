@@ -5,5 +5,7 @@ build
 local.properties
 instances/androidApp/build
 modules/features/test/build
-modules/plugins/test/build
+modules/features/godot/build
+modules/features/lottie/build
+modules/features/unity/build
 modules/services/core-resources/build
