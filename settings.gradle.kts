@@ -25,7 +25,7 @@ rootProject.name = "GodotMobile"
 include(":instances:androidApp")
 // Services
 include(":modules:services:core-resources")
-// Plugins
-include(":modules:plugins:test")
 // Features
-include(":modules:features:test")
+include(":modules:features:godot")
+include(":modules:features:unity")
+include(":modules:features:lottie")
