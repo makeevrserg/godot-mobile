@@ -61,6 +61,8 @@ buildkonfig = "5.6.5" # https://github.com/gmazzo/gradle-buildconfig-plugin
 godot = "4.4.1.stable"
 fragmentCompose = "1.8.8" # https://github.com/godotengine/godot/tree/master
 
+decompose-router = "0.9.0"
+
 [libraries]
 # klibs
 klibs-mikro-core = { module = "ru.astrainteractive.klibs:mikro-core", version.ref = "klibs-mikro" }
@@ -128,6 +130,8 @@ moko-resources-compose = { module = "dev.icerock.moko:resources-compose", versio
 
 godot = { module = "org.godotengine:godot", version.ref = "godot" }
 androidx-fragment-compose = { group = "androidx.fragment", name = "fragment-compose", version.ref = "fragmentCompose" }
+
+decompose-router = { module = "io.github.xxfast:decompose-router", version.ref = "decompose-router" }
 
 [plugins]
 # Kotlin
