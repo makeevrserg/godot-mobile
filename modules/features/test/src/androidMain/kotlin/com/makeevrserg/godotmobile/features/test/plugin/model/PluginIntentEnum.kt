@@ -12,5 +12,29 @@ internal enum class PluginIntentEnum(val signalInfo: SignalInfo) {
             Int::class.javaObjectType,
             Int::class.javaObjectType
         )
-    )
+    ),
+    SET_BALL_SCALE(
+        signalInfo = SignalInfo(
+            "set_ball_scale",
+            Int::class.javaObjectType,
+            Float::class.javaObjectType,
+        )
+    ),
+    SET_BALL_COLOR(
+        signalInfo = SignalInfo(
+            "set_ball_color",
+            Int::class.javaObjectType,
+            Int::class.javaObjectType,
+            Int::class.javaObjectType,
+            Int::class.javaObjectType,
+            Int::class.javaObjectType
+        )
+    ),
+    SET_BALL_SKEW(
+        signalInfo = SignalInfo(
+            "set_ball_skew",
+            Int::class.javaObjectType,
+            Float::class.javaObjectType,
+        )
+    ),
 }

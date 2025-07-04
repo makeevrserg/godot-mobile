@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://0nlbmm01ux5s"]
+[gd_scene load_steps=6 format=3 uid="uid://0nlbmm01ux5s"]
 
 [ext_resource type="Script" uid="uid://cdn6hhwrwtoo8" path="res://main.gd" id="1_15c77"]
+[ext_resource type="Texture2D" uid="uid://b7u42pumnkkfn" path="res://assets/circle.png" id="2_0xm2m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ibrrl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -27,3 +28,26 @@ environment = SubResource("Environment_2hxxm")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.15, 0.75)
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(527, 369)
+
+[node name="Ball1" type="Sprite2D" parent="Node2D"]
+modulate = Color(0, 0.746493, 0.746492, 1)
+position = Vector2(-200, 0)
+texture = ExtResource("2_0xm2m")
+
+[node name="Ball2" type="Sprite2D" parent="Node2D"]
+modulate = Color(0.813293, 0.621918, 0, 1)
+position = Vector2(0, -200)
+texture = ExtResource("2_0xm2m")
+
+[node name="Ball3" type="Sprite2D" parent="Node2D"]
+modulate = Color(1, 0.465584, 0.407673, 1)
+position = Vector2(200, 0)
+texture = ExtResource("2_0xm2m")
+
+[node name="Ball4" type="Sprite2D" parent="Node2D"]
+modulate = Color(0.819132, 0.480625, 1, 1)
+position = Vector2(0, 200)
+texture = ExtResource("2_0xm2m")
