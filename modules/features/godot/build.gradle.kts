@@ -25,6 +25,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(libs.godot)
+                implementation(libs.decompose.router)
             }
         }
     }

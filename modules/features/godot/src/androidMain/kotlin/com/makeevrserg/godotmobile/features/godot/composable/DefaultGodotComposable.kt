@@ -10,97 +10,37 @@ import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Slider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Dialog
-import androidx.compose.ui.window.DialogProperties
-import androidx.fragment.compose.AndroidFragment
+import com.makeevrserg.godotmobile.features.godot.composable.component.Button
+import com.makeevrserg.godotmobile.features.godot.composable.component.MyDialog
+import com.makeevrserg.godotmobile.features.godot.composable.model.State
 import com.makeevrserg.godotmobile.features.godot.plugin.GodotEventConsumer
 import com.makeevrserg.godotmobile.features.godot.plugin.model.PluginIntent
-import org.godotengine.godot.GodotFragment
-
-private data class State(
-    val background: Color = Color.Black,
-    val isBackgroundDialogVisible: Boolean = false
-)
-
-private val mutableState = mutableStateOf(State())
-
-@Composable
-private fun Button(
-    text: String,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    Text(
-        modifier = modifier
-            .background(Color.Red)
-            .padding(14.dp)
-            .clickable {
-                onClick.invoke()
-            },
-        text = text,
-    )
-}
-
-@Composable
-fun MyDialog(
-    title: String,
-    onDismiss: () -> Unit,
-    content: @Composable () -> Unit
-) {
-    Dialog(
-        onDismissRequest = onDismiss,
-        properties = DialogProperties(
-            dismissOnBackPress = true,
-            dismissOnClickOutside = true,
-        ),
-        content = {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.BottomCenter
-            ) {
-                Column(
-                    Modifier
-                        .clip(RoundedCornerShape(12.dp))
-                        .background(MaterialTheme.colors.primaryVariant)
-                        .padding(12.dp)
-                ) {
-                    Text(text = title)
-                    Spacer(Modifier.height(12.dp))
-                    content.invoke()
-                }
-            }
-        }
-    )
-}
 
 @Suppress("LongMethod")
 @Composable
-fun TestComposable(
+fun DefaultGodotComposable(
     modifier: Modifier = Modifier,
-    godotEventConsumer: GodotEventConsumer
+    godotEventConsumer: GodotEventConsumer,
+    onPushParametrized: () -> Unit,
+    onBack: () -> Unit
 ) {
+    val mutableState = remember { mutableStateOf(State()) }
     val state by mutableState
     LaunchedEffect(state.background) {
         godotEventConsumer.onIntent(PluginIntent.SetBackground(state.background))
@@ -184,11 +124,7 @@ fun TestComposable(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Box(contentAlignment = Alignment.Center) {
-            AndroidFragment(
-                modifier = modifier.size(400.dp),
-                clazz = GodotFragment::class.java
-            )
+        Box(contentAlignment = Alignment.Center, modifier = modifier.size(400.dp)) {
             Text(
                 text = "This is Compose text above!",
                 modifier = Modifier.background(colorAnimation3.value)
@@ -200,6 +136,18 @@ fun TestComposable(
                 text = "Background",
                 onClick = {
                     mutableState.value = state.copy(isBackgroundDialogVisible = true)
+                }
+            )
+            Button(
+                text = "Push Parametrized",
+                onClick = {
+                    onPushParametrized.invoke()
+                }
+            )
+            Button(
+                text = "Back",
+                onClick = {
+                    onBack.invoke()
                 }
             )
         }

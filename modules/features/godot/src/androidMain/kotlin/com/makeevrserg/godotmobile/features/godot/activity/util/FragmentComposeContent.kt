@@ -1,4 +1,4 @@
-package com.makeevrserg.godotmobile.features.godot.composable.util
+package com.makeevrserg.godotmobile.features.godot.activity.util
 
 import android.R
 import android.view.ViewGroup
