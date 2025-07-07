@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.unit.dp
 import androidx.fragment.compose.AndroidFragment
 import com.arkivanov.decompose.router.pages.navigate
@@ -15,25 +16,52 @@ import io.github.xxfast.decompose.router.pages.RoutedContent
 import io.github.xxfast.decompose.router.pages.Router
 import io.github.xxfast.decompose.router.pages.pagesOf
 import io.github.xxfast.decompose.router.pages.rememberRouter
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.descriptors.PrimitiveKind
+import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
+import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 import org.godotengine.godot.GodotFragment
 import kotlin.random.Random
 
 @Serializable
 sealed interface GodotScreen {
+    @Serializable
     data object Default : GodotScreen
+
+    @Serializable
     data class Parametrized(
+        @Serializable(ColorSerializer::class)
         val backgroundColor: Color = Color.Black,
         val ball1: BallParam = BallParam(),
         val ball2: BallParam = BallParam(),
         val ball3: BallParam = BallParam(),
         val ball4: BallParam = BallParam()
     ) : GodotScreen {
+        @Serializable
         data class BallParam(
             val scale: Float = Random.nextFloat(),
+            @Serializable(ColorSerializer::class)
             val color: Color = Color(Random.nextInt()).copy(alpha = 1f),
             val skew: Float = Random.nextDouble(0.0, 0.1).toFloat()
         )
+    }
+
+    object ColorSerializer : KSerializer<Color> {
+        override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(
+            serialName = "kolor",
+            kind = PrimitiveKind.LONG
+        )
+
+        override fun deserialize(decoder: Decoder): Color {
+            return Color(decoder.decodeLong())
+        }
+
+        override fun serialize(encoder: Encoder, value: Color) {
+            encoder.encodeLong(value.toArgb().toLong())
+        }
     }
 }
 

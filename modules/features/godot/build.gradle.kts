@@ -5,6 +5,7 @@ import ru.astrainteractive.gradleplugin.property.extension.ModelPropertyValueExt
 
 plugins {
     kotlin("multiplatform")
+    kotlin("plugin.serialization")
     id("com.android.library")
     id("ru.astrainteractive.gradleplugin.java.core")
     id("ru.astrainteractive.gradleplugin.android.core")
